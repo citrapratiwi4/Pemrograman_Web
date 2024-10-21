@@ -1,0 +1,28 @@
+<?php
+function tambah($a, $b){
+    $hasil = $a + $b;
+    echo "hasil penjumlahan = $hasil" ;
+}
+tambah(10,3);
+echo "<br>";
+
+
+    tambah(40,50);
+    echo "<hr>";
+
+    function kali($c,$d){
+        $hasil_kali = $c*$d;
+        return $hasil_kali;
+    }
+    $perkalian = kali(3,4);
+    echo "hasil perkalian = $perkalian";
+
+    echo "<hr>";
+    function bagi($a,$b){
+        $hasil_bagi=$a/$b;
+        echo "hasil pembagian = $hasil_bagi";
+    }
+    bagi(10,2);
+
+
+?>
