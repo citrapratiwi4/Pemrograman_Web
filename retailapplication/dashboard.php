@@ -1,9 +1,11 @@
-<?php 
+<?php
+include "koneksi.php";
 session_start();
 if(!isset($_SESSION['login'])){
-    header('location:index.php');
+    header('location:index.php');  
 }else{
     ?>
+
     <!doctype html>
 <html lang="en">
   <head>
@@ -16,22 +18,28 @@ if(!isset($_SESSION['login'])){
     <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="#" >Retail Application</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <div class="navbar-nav ms-auto">
                 <a class="nav-link active" aria-current="page" href="?modul=home">Home</a>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"aria-expanded="false">Barang</a>
+                    
                     <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="?modul=barang">Data Barang</a></li>
-                            <a class="dropdown-item" href="?modul=persediaan">Persediaan Barang</a>
+                            <li><a class="dropdown-item" href="?modul=barang">Data Barang</a></li>
+                            <li><a class="dropdown-item" href="?modul=persediaan">Persediaan Barang</a></li>
+                            <li><a class="dropdown-item" href="?modul=kategori">Kategori</a></li>
+                            <li><a class="dropdown-item" href="?modul=pemasok">Pemasok</a></li>
                     </ul>
                 </li>
-                <a class="nav-link" href="?modul=penjualan">Penjualan</a>
-                <a class="nav-link" href="?modul=pengguna">Pengguna</a>
+                <li class="nav-item">
+                  <a class="nav-link" href="?modul=penjualan">Penjualan</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="?modul=pengguna">Pengguna</a>
+                  </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-person-circle"></i>
@@ -40,7 +48,7 @@ if(!isset($_SESSION['login'])){
                     <ul class="dropdown-menu">
                         <li> 
                             <a class="dropdown-item" href="?modul=profile">Profile</a>
-                            <a class="dropdown-item" href="?modul=Logout">Logout</a>
+                            <a class="dropdown-item" href="logout.php">Logout</a>
                         </li>
                     </ul>
                 </li>
@@ -48,32 +56,35 @@ if(!isset($_SESSION['login'])){
             </div>
         </div>
     </nav>
-    <main class="bg-white py-4 shadow-sm">
+    <div class="container-fluid py-3 bg-white shadow-sm">
         <div class="container">
-            <?php
-            if(!isset($_GET['modul'])){
-            }else{
-                $modul = $_GET['modul'];
-                if($modul=="home.php"){
-                    include "home.php";
-                }elseif($modul=="barang"){
-                    include "modul/barang/index.php";
-                }elseif($modul=="persediaan"){
-                    include "modul/persediaan/index.php";
-                }elseif($modul=="penjualan"){
-                    include "modul/penjualan/index.php";
-                }elseif($modul=="pengguna"){
-                    include "modul/pengguna/index.php";
-                }elseif($modul=="profile"){
-                    include "modul/profile/index.php";
-                }else{
-                    include "login.php";
-                }
-            }
-            ?>
+        <?php
+if (isset($_GET['modul'])) {
+    if ($_GET['modul'] == "home") {
+        include "home.php";
+    } elseif ($_GET['modul'] == "barang") {
+        include "modul/barang/index.php";
+    } elseif ($_GET['modul'] == "persediaan") {
+        include "modul/persediaan/index.php";
+    } elseif ($_GET['modul'] == "penjualan") {
+        include "modul/penjualan/index.php";
+    } elseif ($_GET['modul'] == "pengguna") {
+        include "modul/pengguna/index.php";
+    } elseif ($_GET['modul'] == "profile") {
+        include "modul/profile/index.php";
+    } elseif ($_GET['modul'] == "kategori") {
+        include "modul/kategori/index.php";
+    } elseif ($_GET['modul'] == "pemasok") {
+        include "modul/pemasok/index.php";
+    } else {
+        include "home.php";
+    }
+}
+?>
+
         </div>
-    </main>
-    <div class="container py-3 text-center">
+    </div>
+    <div class="text-center py-3">
         <span> Copyright &copy2024 | Retail Application</span>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
