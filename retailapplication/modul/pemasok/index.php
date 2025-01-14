@@ -1,5 +1,3 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
 <div class="border-bottom d-flex justify-content-between py-3"> 
     <h4>Data Pemasok</h4>
@@ -72,9 +70,7 @@
             <td><?= $row_pemasok['nama_pemasok']; ?></td>
             <td><?= $row_pemasok['alamat']; ?></td>
             <td><?= $row_pemasok['telepon']; ?></td>
-            <td>
-                <span class="badge <?= $row_pemasok['status'] == 1 ? 'text-bg-success' : 'text-bg-danger'; ?>">
-                    <?= $row_pemasok['status'] == 1 ? 'Aktif' : 'Tidak Aktif'; ?>
+            <td><span class="badge <?= $row_pemasok['status'] ==1 ? 'text-bg-success' : 'text-bg-danger'; ?>"><?= $row_pemasok['status'] ==1 ? 'Aktif' : 'Tidak Aktif'; ?>
                 </span>
             </td>
             <td>
@@ -92,10 +88,35 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <form action="modul/pemasok/proses.php?aksi=edit&id=<?= $row_pemasok['id_pemasok']; ?>" method="post">
-                                <!-- Edit Fields -->
-                            </form>
+                                <div class="modal-body">
+                                    <div class="mb-3"> 
+                                        <label class="from-label"  for="namapemasok">Nama Pemasok</label>
+                                        <input class="form-control" type="text" name="namapemasok" placeholder="Masukan nama pemasok" value="<?=$row_pemasok['nama_pemasok'];?>" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="alamat">Alamat</label>
+                                        <input class="form-control" type="text" name="alamat" placeholder="Masukan alamat" value="<?=$row_pemasok['alamat'];?>" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label" for="telepon">Telepon</label>
+                                        <input class="form-control" type="text" name="telepon" placeholder="Masukan telepon" value="<?=$row_pemasok['telepon'];?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="status">Status</label>
+                                    <select class="form-select" name="status">
+                                        <option value="selected disabled">Pilih status</option>
+                                        <option value="1" <?= $row_pemasok['status']==1?'selected':'';?>>Aktif</option>
+                                        <option value="0" <?= $row_pemasok['status']==0?'selected':'';?>>Tidak Aktif</option>
+                                    </select>
+                                </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"  data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Ubah</button>
+                        </div>
+                        </form>
                     </div>
+                </div>
                 </div>
 
                 <!-- Icon Hapus -->
@@ -135,5 +156,3 @@
         $('#myTable').DataTable();
     });
 </script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
