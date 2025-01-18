@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $totalbayar = json_decode($_POST['totalbayar'], true);
     $bayar = json_decode($_POST['bayar'], true);
     $kembalian = json_decode($_POST['kembalian'], true);
-    $sql = "INSERT INTO penjualan (tanggal_penjualan, totalbayar, bayar, kembalian) VALUES (NOW(), '$totalbayar', '$bayar', '$kembalian')";
+    $sql = "INSERT INTO penajualan (tanggal_penjualan, totalbayar, bayar, kembalian) VALUES (NOW(), '$totalbayar', '$bayar', '$kembalian')";
     $mysqli->query($sql);
 
     // simpan ke detail penjualan
